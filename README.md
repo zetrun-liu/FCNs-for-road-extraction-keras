@@ -15,7 +15,7 @@ Due to FCNs can take arbitrary size image as input, however it will need amount 
 
 **crop_image.py:** Got samples from the original images by sliding windows technique;
 
-**model.py:** Contain various FCNs model, including FCN-8s/2s, SegNet, Unet, VGGUnet, ResUnet and D-ResUnet;
+**model.py:** Contain various FCNs model, including **FCN-8s/2s, SegNet, Unet, VGGUnet, ResUnet and D-ResUnet**;
 
 **metrics.py:** Calculating the metrics(precision/recall/active IoU) of the predicted road segmentation maps;
 
@@ -31,3 +31,13 @@ Step1: Starting main.py to train the model and get the weights of model, which i
 Step2: Running sub_predict.py to predict the road of test data, of course you need to change a line of code for loading the corresponding model;
 
 Step3: Using metrics.py to get the metrics of road segmentation performance. 
+
+## Reference
+
+1. https://github.com/HLearning/unet_keras;
+
+2. https://github.com/zhixuhao/unet;
+
+3. https://github.com/DavideA/dilation-keras;
+
+4. https://github.com/mrgloom/awesome-semantic-segmentation
