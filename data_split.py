@@ -49,7 +49,7 @@ if __name__ == '__main__':
     copyFile(path)
 '''
 
-
+'''
 #------------------------3.get 8 Bit test masks--------------------
 import os
 import cv2
@@ -74,13 +74,13 @@ import numpy as np
 import skimage.io as io
 
 #path1 = "data/membrane/test/mask_8bit"
-path1 = "data/membrane/test/sub_test/mask8"
+path1 = "data/membrane/test/sub_test/mask8" #Dir of Ground Truth
 #path1 = "data/membrane/test/mask_8bit"
 #path2 = "data/membrane/test/sub_test/predict1"
-path2 = "data/membrane/test/sub_test/predict_16_D_res"
+path2 = "data/membrane/test/sub_test/predict" #Dir of predict map
 #path2 = "data/membrane/train/predict"
 sample1 = os.listdir(path1)
-Iou = []
+Iou = []#Iou for each test images
 TP = 0
 FP = 0
 FN = 0
@@ -90,10 +90,12 @@ for name in sample1:
     mask1 = mask1 / 255
     mask1 = mask1.flatten()
     
-    name1 = name[0:-8]+'sat.jpg'
-    mask2 = io.imread(os.path.join(path2, name1))
-    #mask2 = io.imread(os.path.join(path2, name))
-    mask2 = mask2 / 255
+    #name1 = name[0:-8]+'sat.jpg'
+    #mask2 = io.imread(os.path.join(path2, name1))
+    mask2 = io.imread(os.path.join(path2, name))
+    mask2 = mask2 / 255.0
+    mask2[mask2 >= 0.5] = 1
+    mask2[mask2 < 0.5] = 0
     mask2 = mask2.flatten()
     
     tp = np.dot(mask1, mask2)
@@ -107,22 +109,10 @@ for name in sample1:
     sum_fenmu = sum_fenmu + fenmu
     #element_wise = np.multiply(mask1, mask2)
     Iou.append(tp / fenmu)
-    if(tp / fenmu == 0.0):
-        print(name)
+    #if(tp / fenmu == 0.0):
+        #print(name)
     
 print(Iou)
-print(TP / sum_fenmu)
+print(TP / sum_fenmu)#active IoU
 print(TP / (TP+FN))#recall
-print(TP / (TP+FP))#precision
-'''   
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+print(TP / (TP+FP))#precision 
