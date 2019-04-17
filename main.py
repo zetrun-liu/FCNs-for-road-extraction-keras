@@ -7,9 +7,9 @@ import numpy as np
 import skimage.io as io
 import skimage.transform as trans
 
-fileDir = "data/membrane/test/images"
+#fileDir = "data/membrane/test/images"
 
-test_image_num = len(os.listdir(fileDir))
+#test_image_num = len(os.listdir(fileDir))
         
 
 data_gen_args = dict(rotation_range=90.,
@@ -21,12 +21,12 @@ data_gen_args = dict(rotation_range=90.,
                     vertical_flip=True,
                     fill_mode='nearest')
 
-train_Gene = trainGenerator(2,'data/membrane/train','image_crops','mask_crops',data_gen_args,save_to_dir = None)
-val_Gene = trainGenerator(2,'data/membrane/test','images_crops','masks_crops',data_gen_args)
+train_Gene = trainGenerator(8,'data/membrane/train','image_crops','mask_crops',data_gen_args,save_to_dir = None)
+val_Gene = trainGenerator(8,'data/membrane/test','images_crops','masks_crops',data_gen_args)
 
 reduce_lr = ReduceLROnPlateau(monitor = 'val_loss', factor=0.2, patience=1, verbose=0, mode='min', epsilon=1e-4, 
                               cooldown=0, min_lr=1e-6)
-visual = TensorBoard(log_dir='./keras_log', histogram_freq=0, write_graph=True, write_images=True)
+visual = TensorBoard(log_dir='./D_resunet1_log', histogram_freq=0, write_graph=True, write_images=True)
 earlystop = EarlyStopping(monitor='val_loss', patience=4, verbose=0, mode='min')
 #model = unet()
 #model = segnet_vgg16()
@@ -34,15 +34,15 @@ earlystop = EarlyStopping(monitor='val_loss', patience=4, verbose=0, mode='min')
 #model.load_weights('fcn_vgg16_8s.hdf5')
 #model = fcn_vgg16_8s()
 #model = VGGUnet2()
-#model = D_resunet()
+model = D_resunet1()
 
-model = res_unet1()
+#model = res_unet1()
 #model.load_weights('res_unet.hdf5')
 
-model_checkpoint = ModelCheckpoint('res_unet1.hdf5', monitor='loss',verbose=1, save_best_only=True)
-model.fit_generator(train_Gene,steps_per_epoch=10,epochs=5,
+model_checkpoint = ModelCheckpoint('D_Resunet1.hdf5', monitor='loss',verbose=1, save_best_only=True)
+model.fit_generator(train_Gene,steps_per_epoch=15000,epochs=50,
                     callbacks=[model_checkpoint, visual, reduce_lr, earlystop], 
-                    validation_data=val_Gene, validation_steps=10)
+                    validation_data=val_Gene, validation_steps=1560)#step_per_epoch and validation_steps equals to number of samples divide batchsize
 
 
 '''
