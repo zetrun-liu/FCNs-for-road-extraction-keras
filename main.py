@@ -1,4 +1,4 @@
-from model import unet, segnet_vgg16, fcn_vgg16_8s, VGGUnet2, res_unet, res_unet1, D_resunet
+from model import unet, segnet_vgg16, fcn_vgg16_8s, VGGUnet2, res_unet, res_unet1, D_resunet, D_resunet1
 from data import trainGenerator, testGenerator, saveResult, testGenerator2
 from keras.callbacks import ModelCheckpoint, Callback, EarlyStopping, ReduceLROnPlateau, TensorBoard
 import keras.backend as K
