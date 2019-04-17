@@ -14,9 +14,9 @@ import numpy as np
 import skimage.io as io
 import skimage.transform as trans
 
-fileDir = "data/membrane/test/valid"  #test images(1024*1024)
+fileDir = "data/membrane/IEEE_road/test/images"  #test images(1024*1024)
 #fileDir = "data/membrane/train/f"
-preDir = "data/membrane/test/sub_test/predict/" #Dir of predict mask
+preDir = "data/membrane/IEEE_road/test/sub_test/predict/" #Dir of predict mask
 
 
 
