@@ -5,7 +5,7 @@ Road extraction of high-resolution remote sensing images based on various semant
 
 **Win10 + Anaconda3 + tesndorflow-gpu + keras**
 
-**Main packagess Required:** opencv-python, scikit-image, 
+**Main packages Required:** opencv-python, scikit-image, 
 
 ## Details about the project
 
