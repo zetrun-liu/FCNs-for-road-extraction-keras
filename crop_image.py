@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Wed Jan 23 17:07:33 2019
-
+Note! crop the images and masks need to change several lines code(60/63)
 @author: zetn
 """
 from model import unet, segnet_vgg16, fcn_vgg16_8s, VGGUnet2, res_unet, res_unet1, D_resunet1
