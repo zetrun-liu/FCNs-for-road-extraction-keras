@@ -1,6 +1,8 @@
 #  FCNs-for-road-extraction-keras
 Road extraction of high-resolution remote sensing images based on various semantic segmentation networks.
 
+## Python novice, the code is redundant. Training different models requires changing a few lines of code in some modules(main.py, sub_predict.py). Besides, data preprocessing contains images and masks, so crop_image.py also need change.
+
 ## Environment
 
 **Win10 + Anaconda3 + tesndorflow-gpu + keras**
