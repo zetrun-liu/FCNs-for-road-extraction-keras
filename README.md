@@ -1,7 +1,7 @@
 #  FCNs-for-road-extraction-keras
-Road extraction of high-resolution remote sensing images based on various semantic segmentation networks.
+**Road extraction of high-resolution remote sensing images based on various semantic segmentation networks.**
 
-**Python novice, the code is redundant. Training different models requires changing a few lines of code in some modules(main.py, sub_predict.py). Besides, data preprocessing contains images and masks, so crop_image.py also need change. The code corresponding my accepted paper, which running successful and got good segmentation results. If you have any problems while running the code, leave a comment.**
+Python novice, the code is redundant. Training different models requires changing a few lines of code in some modules(main.py, sub_predict.py). Besides, data preprocessing contains images and masks, so crop_image.py also need change. The code corresponding my accepted paper, which running successful and got good segmentation results. If you have any problems while running the code, leave a comment.
 
 ## Environment
 
