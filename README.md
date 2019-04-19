@@ -30,7 +30,7 @@ Due to FCNs can take arbitrary size image as input, however it will need amount 
 
 Step1: Starting main.py to train the model and get the weights of model, which is a hdf5 type file;
 
-Step2: Running sub_predict.py to predict the road of test data, of course you need to change a line of code for loading the corresponding model;
+Step2: Running sub_predict.py to predict the road of test data, of course you need to change few lines code for loading various model and its corresponding weights;
 
 Step3: Using metrics.py to get the metrics of road segmentation performance. 
 
