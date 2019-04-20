@@ -12,9 +12,6 @@ from keras.losses import binary_crossentropy
 from keras import backend as keras
 from keras.layers import Dense, Flatten, ZeroPadding2D, BatchNormalization, Activation, Conv2DTranspose
 
-file_path = os.path.dirname( os.path.abspath(__file__) )
-VGG_Weights_path = file_path+"/../data/vgg16_weights_th_dim_ordering_th_kernels.h5"
-
 def IoU(y_true, y_pred):
     y_true_f = K.flatten(y_true)
     y_pred_f = K.flatten(y_pred)
@@ -144,7 +141,7 @@ def fcn_vgg16_8s(input_size = (256,256,3)):
     
     sum_2 = add([block_3, sum_1])
     
-    x = Conv2DTranspose(1, kernel_size=(16, 16), strides=(8, 8), activation='softmax', padding='same')(sum_2)
+    x = Conv2DTranspose(1, kernel_size=(16, 16), strides=(8, 8), activation='sigmoid', padding='same')(sum_2)
     
     model = Model(input = inputs, output = x)
 
@@ -269,7 +266,7 @@ def unet(pretrained_weights = None,input_size = (256,256,3)):
 
     return model
 
-def VGGUnet2(input_size = (1024,1024,3)):
+def VGGUnet2(input_size = (256,256,3)):
     
     inputs = Input(input_size)
     
@@ -331,7 +328,7 @@ def VGGUnet2(input_size = (1024,1024,3)):
 
     model = Model(input = inputs, output = conv10)
 
-    model.compile(optimizer = Adam(lr = 1e-4), loss = 'binary_crossentropy', metrics = ['accuracy'])
+    model.compile(optimizer = Adam(lr = 2e-4), loss = 'binary_crossentropy', metrics = ['accuracy'])
 
     return model
 
@@ -449,7 +446,7 @@ def decoder(x, from_encoder):
     return main_path
 
 
-def res_unet1(input_shape = (256,256,3)):
+def res_unet1(input_shape = (256,256,3)):#含有三个下采样残差单元的ResUnet
     inputs = Input(shape=input_shape)
 
     to_decoder = encoder(inputs)
@@ -511,7 +508,7 @@ def d_decoder(x, from_encoder):
 
     return main_path
 
-def d_res_unet1(input_shape = (256,256,3)):
+def d_res_unet1(input_shape = (256,256,3)):#含有四个下采样残差单元的ResUnet
     inputs = Input(shape=input_shape)
 
     to_decoder = d_encoder(inputs)
@@ -527,7 +524,7 @@ def d_res_unet1(input_shape = (256,256,3)):
     
     return model
 
-def D_resunet(input_size = (256,256,3)):
+def D_resunet(input_size = (256,256,3)):#含有四个下采样残差单元的D_ResUnet
 
 	# https://github.com/fchollet/deep-learning-models/releases/download/v0.1/vgg16_weights_th_dim_ordering_th_kernels.h5
 	inputs = Input(input_size)
@@ -714,7 +711,7 @@ def D_resunet(input_size = (256,256,3)):
     
 	return model
 
-def D_resunet1(input_size = (256,256,3)):
+def D_resunet1(input_size = (256,256,3)):#含有三个下采样残差单元的D_ResUnet
 
 	# https://github.com/fchollet/deep-learning-models/releases/download/v0.1/vgg16_weights_th_dim_ordering_th_kernels.h5
 	inputs = Input(input_size)
